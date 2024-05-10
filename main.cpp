@@ -39,9 +39,11 @@ void Add(int val)
 {
     if (!isQueueFull())
     {
+        int data = queue_table[r_i % QUEUE_SIZE];
+        r_i++;
         size++;
-        queue_table[w_i] = val;
-        w_i=(w_i+1)%(QUEUE_SIZE);
+        return data;
     }
+    return 0;
 }
 

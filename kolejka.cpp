@@ -32,7 +32,7 @@ int First(void)
         return queue_table[r_i];
     }
 
-    return queue_table[0];
+    return 0;
 }
 
 void Add(int val)
@@ -40,8 +40,7 @@ void Add(int val)
     if (!isQueueFull())
     {
         size++;
-        queue_table[w_i] = val;
-        w_i=(w_i+1)%(QUEUE_SIZE);
+        queue_table[w_i % QUEUE_SIZE] = val;
+        w_i++;
     }
 }
-
