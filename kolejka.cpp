@@ -12,7 +12,7 @@ int isQueueFull(void)
     return (size == (QUEUE_SIZE)) ? 1 : 0;
 }
 
-int Remove(void)
+int remove(void)
 {
     if (!isQueueEmpty())
     {
@@ -25,7 +25,7 @@ int Remove(void)
     return 0;
 }
 
-int First(void)
+int first(void)
 {
     if (!isQueueEmpty())
     {
@@ -35,7 +35,7 @@ int First(void)
     return 0;
 }
 
-void Add(int val)
+void add(int val)
 {
     if (!isQueueFull())
     {

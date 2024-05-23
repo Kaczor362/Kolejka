@@ -1,49 +1,84 @@
-#define QUEUE_SIZE 5
-int queue_table[QUEUE_SIZE] = {0};
-int r_i=0;
-int w_i=0;
-int size=0;
-int isQueueEmpty(void)
-{
-    return (size == 0) ? 1 : 0;
-}
-int isQueueFull(void)
-{
-    return (size == (QUEUE_SIZE)) ? 1 : 0;
-}
+#include <stdio.h>
+#include "kolejka.h"
 
-int Remove(void)
-{
-    if (!isQueueEmpty())
+    void menu(void)
     {
-        int data = queue_table[r_i % QUEUE_SIZE];
-        r_i++;
-        size--;
-        return data;
-
+        printf("\n");
+        printf("1 - Add a number to the queue \n");
+        printf("2 - Read the first value from the queue \n");
+        printf("3 - Remove a value from the queue \n");
+        printf("4 - Check if the queue is empty\n");
+        printf("5 - Check if the queue is full\n");
+        printf("6 - End the program\n");
+        printf("\n");
     }
+
+
+
+int main()
+{
+    int temp = 0;
+    int option = 0;
+    while (1)
+    {
+        menu();
+        scanf("%d", &option);
+
+        switch (option)
+        {
+            case 1:
+                if (!isQueueFull()) {
+                    printf("Enter value: ");
+                    scanf("%d", &temp);
+                    add(temp);
+                } else {
+                    printf("Operation not allowed. Queue is full!!!\n\n");
+                }
+                break;
+
+            case 2:
+                if (!isQueueEmpty()) {
+                    temp = first();
+                    printf("Read value: %d\n", temp);
+                } else {
+                    printf("Operation not allowed. Queue is empty!!!\n\n");
+                }
+                break;
+
+            case 3:
+                if (!isQueueEmpty()) {
+                    temp = remove();
+                    printf("Read value: %d\n", temp);
+                } else {
+                    printf("Operation not allowed. Queue is empty!!!\n\n");
+                }
+                break;
+
+            case 4:
+                if (isQueueEmpty()) {
+                    printf("The queue is empty.\n");
+                } else {
+                    printf("The queue is not empty.\n");
+                }
+                break;
+
+            case 5:
+                if (isQueueFull()) {
+                    printf("The queue is full.\n");
+                } else {
+                    printf("The queue is not full.\n");
+                }
+                break;
+
+            case 6:
+                // End the program
+                return 0;
+
+            default:
+                printf("Choose a valid option.\n\n");
+                break;
+        }
+    }
+
     return 0;
 }
-
-int First(void)
-{
-    if (!isQueueEmpty())
-    {
-        return queue_table[r_i];
-    }
-
-    return queue_table[0];
-}
-
-void Add(int val)
-{
-    if (!isQueueFull())
-    {
-        int data = queue_table[r_i % QUEUE_SIZE];
-        r_i++;
-        size++;
-        return data;
-    }
-    return 0;
-}
-
